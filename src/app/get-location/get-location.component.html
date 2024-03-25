@@ -1,0 +1,44 @@
+<div class="paddingTop">
+    <mat-card class="example-card center">
+        <mat-card-header>
+          <mat-card-title>Enter your location below</mat-card-title>
+          <mat-card-subtitle>City, State</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-form-field class="example-form-field">
+            <mat-label>Clearable input</mat-label>
+            <input matInput type="text" [(ngModel)]="location">
+            @if (location) {
+              <button matSuffix mat-icon-button aria-label="Clear" (click)="location=''">
+                <mat-icon>close</mat-icon>
+              </button>
+            }
+          </mat-form-field>
+          <mat-divider></mat-divider>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button (click)="getWeather()">Get Weather</button>
+        </mat-card-actions>
+        <mat-card-footer *ngIf="isLoading">
+          <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </mat-card-footer>
+        <mat-divider></mat-divider>
+        <mat-card-content class="overflow" *ngIf="weatherData">
+          <mat-list>
+            <div *ngFor="let weather of weatherData">
+              <mat-list-item >
+                <p mat-line>Date: {{weather.date}}</p>
+              </mat-list-item>
+              <mat-list-item >
+                <p mat-line>Temperature: {{weather.avgtempF}}°F</p>
+              </mat-list-item>
+              <mat-list-item >
+                <p mat-line>Moon Phase: {{weather.astronomy[0].moon_phase}}</p>
+              </mat-list-item>
+              <mat-divider></mat-divider>
+            </div>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+</div>
+

@@ -1,1 +1,29 @@
-<p>display-weather works!</p>
+<div class="paddingTop">
+    <mat-card class="example-card center">
+
+        <mat-card-header>
+          <mat-card-title>Your next three days of weather.</mat-card-title>
+          <mat-card-subtitle>Go outside.</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-divider></mat-divider>
+        
+        <mat-card-content class="overflow" *ngIf="weatherData">
+          <mat-list>
+            <div *ngFor="let weather of weatherData">
+              <mat-list-item >
+                <p mat-line>Date: {{weather.date}}</p>
+              </mat-list-item>
+              <mat-list-item >
+                <p mat-line>Temperature: {{weather.avgtempF}}°F</p>
+              </mat-list-item>
+              <mat-list-item >
+                <p mat-line>Moon Phase: {{weather.astronomy[0].moon_phase}}</p>
+              </mat-list-item>
+              <mat-divider></mat-divider>
+            </div>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+</div>
+

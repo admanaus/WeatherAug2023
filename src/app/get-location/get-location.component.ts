@@ -10,6 +10,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { GetDataService } from '../services/get-data.service';
 import {MatListModule} from '@angular/material/list';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -32,7 +33,9 @@ import {MatListModule} from '@angular/material/list';
 })
 export class GetLocationComponent {
 
-  constructor(private getDataService: GetDataService) { }
+  constructor(
+    private getDataService: GetDataService,
+    private router: Router) { }
 
   isLoading = false;
   location = 'Lehi, UT';
@@ -42,8 +45,9 @@ export class GetLocationComponent {
     this.isLoading = true;
     this.getDataService.getWeather(this.location).subscribe((res: any) => {
       this.weatherData = res.weather;
-      console.log(res);
+      this.getDataService.setApiResponseCache(res);
       this.isLoading = false;
+      this.router.navigate(['/weather']);
     });
   }
 }

@@ -42,7 +42,7 @@ export class DisplayWeatherComponent implements OnInit{
   ngOnInit() {
     this.fullApiResponse = this.getDataService.getApiResponseCache();
     this.weatherData = this.fullApiResponse.weather;
-    if(Object.keys(this.weatherData).length === 0){
+    if(!this.weatherData){
       this.router.navigate(['/location']);
     }
   }

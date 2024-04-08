@@ -11,6 +11,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { GetDataService } from '../services/get-data.service';
 import {MatListModule} from '@angular/material/list';
 import { Router } from '@angular/router';
+import {MatLine} from "@angular/material/core";
 
 @Component({
   selector: 'app-display-weather',
@@ -25,7 +26,8 @@ import { Router } from '@angular/router';
     MatInputModule,
     MatFormFieldModule,
     FormsModule,
-    MatListModule
+    MatListModule,
+    MatLine
   ],
   templateUrl: './display-weather.component.html',
   styleUrl: './display-weather.component.css'
@@ -42,10 +44,10 @@ export class DisplayWeatherComponent implements OnInit{
   ngOnInit() {
     this.fullApiResponse = this.getDataService.getApiResponseCache();
     this.weatherData = this.fullApiResponse.weather;
+    console.log(this.weatherData);
     if(!this.weatherData){
       this.router.navigate(['/location']);
     }
   }
-  
 
 }

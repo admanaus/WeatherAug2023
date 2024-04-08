@@ -12,7 +12,7 @@
           <mat-list>
             <div *ngFor="let weather of weatherData">
               <mat-list-item >
-                <p mat-line>Date: {{weather.date}}</p>
+                <p mat-line>Date: {{weather.date | date : "fullDate"}}</p>
               </mat-list-item>
               <mat-list-item >
                 <p mat-line>Temperature: {{weather.avgtempF}}°F</p>

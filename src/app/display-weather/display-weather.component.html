@@ -1,16 +1,17 @@
-<div class="paddingTop">
-    <mat-card class="example-card center">
+<div class="paddingTop container">
+  <div *ngFor="let location of fullApiResponse">
+    <mat-card class="example-card center item">
 
         <mat-card-header>
-          <mat-card-title>Your next three days of weather.</mat-card-title>
+          <mat-card-title>Your next three days of weather for {{location.nearest_area[0].areaName[0].value}}</mat-card-title>
           <mat-card-subtitle>Go outside.</mat-card-subtitle>
         </mat-card-header>
 
         <mat-divider></mat-divider>
         
-        <mat-card-content class="overflow" *ngIf="weatherData">
+        <mat-card-content class="overflow" *ngIf="location.weather">
           <mat-list>
-            <div *ngFor="let weather of weatherData">
+            <div *ngFor="let weather of location.weather">
               <mat-list-item >
                 <p mat-line>Date: {{weather.date | date : "fullDate"}}</p>
               </mat-list-item>
@@ -24,6 +25,8 @@
             </div>
           </mat-list>
         </mat-card-content>
-      </mat-card>
+    </mat-card>
+  </div>
+
 </div>
 

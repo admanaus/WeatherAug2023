@@ -51,17 +51,17 @@ export class GetLocationComponent {
 
   isLoading = false;
   location = 'Lehi, UT';
-  weatherData: any[] = [];
 
   getWeather(){
     this.isLoading = true;
     this.location = this.form.controls["city"].getRawValue() + ", " + this.form.controls["state"].getRawValue();
     this.getDataService.getWeather(this.location).subscribe((res: any) => {
-      this.weatherData = res.weather;
       this.getDataService.setApiResponseCache(res);
       this.isLoading = false;
       this.router.navigate(['/weather']);
     });
+
+
   }
 
   clearCity(): void {

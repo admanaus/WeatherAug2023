@@ -38,14 +38,16 @@ export class DisplayWeatherComponent implements OnInit{
     private getDataService: GetDataService,
     private router: Router) { }
 
-  fullApiResponse: any = {};
-  weatherData: any[] = [];
+  fullApiResponse: any[] = [];
+
 
   ngOnInit() {
     this.fullApiResponse = this.getDataService.getApiResponseCache();
-    this.weatherData = this.fullApiResponse.weather;
-    console.log(this.weatherData);
-    if(!this.weatherData){
+      console.log("This is the service cache response:");
+      console.log(this.fullApiResponse);
+
+    // console.log(this.weatherData02);
+    if(this.fullApiResponse.length === 0){
       this.router.navigate(['/location']);
     }
   }
